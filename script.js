@@ -2,7 +2,7 @@ var API_SERVER = 'http://elections.huffingtonpost.com',
     API_BASE = '/pollster/api/',
     API_FILE = 'polls.json',
     callback = '?callback=pollsterPoll',
-    params = '&state=US&topic=2016-president',
+    params = '&state=US&topic=2016-president&page=3',
     latest_data;
 
 window.pollsterPoll = function (incoming_data) {
