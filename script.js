@@ -22,3 +22,11 @@ $(document).ready(function () {
 function visualize(d) {
     console.log(d);
 }
+
+$(function () {
+    $("#tabs").tabs();
+});
+
+$(function () {
+    $("#tabs").tabs();
+});
