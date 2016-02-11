@@ -37,7 +37,7 @@ function check(sentence, id) {
         document.getElementById(id).style.color = "blue"
             //        document.getElementById(id).style.backgroundImage = "url(images/download.png)"
     }
-    }
+}
 
 function makeGraph(a) {
     var graph = document.createElement('canvas');
@@ -62,9 +62,9 @@ function drawBars(canvas, votes, x, width) {
     var context = canvas.getContext('2d');
 
     context.save();
-    context.translate(x, 400);
+    context.translate(x, 500);
 
-    context.rect(x, 0, width, votes * 2);
+    context.rect(x, -votes * 2, width, votes * 2);
     context.fillStyle = 'green';
 
     context.fill();
