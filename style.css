@@ -6,6 +6,29 @@
 .questions {
     height: 300px;
     width: auto;
-    border: 1px solid black;
     margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
 }
+
+h4 {
+    padding-left: 20px;
+    height: 20px;
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 30px;
+}
+
+.specs {
+    width: auto;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+p {
+    float: left;
+    font-size: .7em;
+    margin-left: 80px;
+}
+
+.specs {}
