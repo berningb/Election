@@ -3,15 +3,52 @@
 
 <head>
     <title>Election</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 
-<body data-spy='scroll' data-offset='50' data-target='.navbar'>
+<body>
+
+
+    <div id="tabs">
+        <ul>
+            <li>
+                <a id="1" href="#tabs-1"></a>
+            </li>
+            <li>
+                <a id="2" href="#tabs-2"></a>
+            </li>
+            <li>
+                <a id="3" href="#tabs-3"></a>
+            </li>
+        </ul>
+        <div id="tabs-1">
+            <div id="specs1" class="specs"></div>
+            <div id="poll1Question1" class="questions"></div>
+            <div id="poll1Question2" class="questions"></div>
+            <div id="poll1Question3" class="questions"></div>
+        </div>
+        <div id="tabs-2">
+            <div id="specs2" class="specs"></div>
+            <div id="poll2Question1" class="questions"></div>
+            <div id="poll2Question2" class="questions"></div>
+            <div id="poll2Question3" class="questions"></div>
+        </div>
+        <div id="tabs-3">
+            <div id="specs3" class="specs"></div>
+            <div id="poll3Question1" class="questions"></div>
+            <div id="poll3Question2" class="questions"></div>
+            <div id="poll3Question3" class="questions"></div>
+        </div>
+    </div>
+
+
+
     <!-- links-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js "></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
     <script src="script.js "></script>
 </body>
 
