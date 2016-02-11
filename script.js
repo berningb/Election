@@ -68,7 +68,7 @@ function questionName(data, start, num, id) {
     document.getElementById(id).appendChild(h3);
 
 
-    check(string, id);
+    //    check(string, id);
 
 }
 
@@ -95,20 +95,20 @@ function info(data, start, id) {
 
 }
 
-function check(sentence, id) {
-    var rep = 'Republican';
-    var demo = 'Democrat';
-
-    if (sentence.indexOf(rep) > -1) {
-        document.getElementById(id).style.color = "red"
-//        document.getElementById(id).style.backgroundImage = "url(images/download.jpg)"
-
-    }
-    if (sentence.indexOf(demo) > -1) {
-        document.getElementById(id).style.color = "blue"
-//        document.getElementById(id).style.backgroundImage = "url(images/download.png)"
-    }
-}
+//function check(sentence, id) {
+//    var rep = 'Republican';
+//    var demo = 'Democrat';
+//
+//    if (sentence.indexOf(rep) > -1) {
+//        document.getElementById(id).style.color = "red"
+////        document.getElementById(id).style.backgroundImage = "url(images/download.jpg)"
+//
+//    }
+//    if (sentence.indexOf(demo) > -1) {
+//        document.getElementById(id).style.color = "blue"
+////        document.getElementById(id).style.backgroundImage = "url(images/download.png)"
+//    }
+//}
 
 function pollName(id, name) {
     $('#' + id).append(name);
