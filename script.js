@@ -7,7 +7,7 @@ var API_SERVER = 'http://elections.huffingtonpost.com',
 
 var first = 0,
     second = 1,
-    third = 3,
+    third = 2,
     fifth = 5,
     sixth = 6,
     seventh = 7;
@@ -17,24 +17,24 @@ window.pollsterPoll = function (incoming_data) {
     visualize(latest_data);
 
 
-    pollName(1, 'Poll1');
-    pollName(2, "poll2");
-    pollName(3, "poll3");
+    pollName(1, 'Poll One');
+    pollName(2, "Poll Two");
+    pollName(3, "Poll Three");
 
-    questionName(latest_data, first, first, 'poll1Question1');
-    questionName(latest_data, first, second, 'poll1Question2');
-    questionName(latest_data, first, third, 'poll1Question3');
+    questionName(latest_data, first, first, 'poll0Question0');
+    questionName(latest_data, first, second, 'poll0Question1');
+    questionName(latest_data, first, third, 'poll0Question2');
     info(latest_data, first, 'specs1');
 
-    questionName(latest_data, second, fifth, 'poll2Question1');
-    questionName(latest_data, second, sixth, 'poll2Question2');
-    questionName(latest_data, second, seventh, 'poll2Question3');
+    questionName(latest_data, second, first, 'poll1Question0');
+    questionName(latest_data, second, second, 'poll1Question1');
+    questionName(latest_data, second, third, 'poll1Question2');
     info(latest_data, second, 'specs2');
 
 
-    questionName(latest_data, third, first, 'poll3Question1');
-    questionName(latest_data, third, second, 'poll3Question2');
-    questionName(latest_data, third, third, 'poll3Question3');
+    questionName(latest_data, third, first, 'poll2Question0');
+    questionName(latest_data, third, second, 'poll2Question1');
+    questionName(latest_data, third, third, 'poll2Question2');
     info(latest_data, third, 'specs3');
 
     for (var i = 0; i < 3; i++) {
@@ -116,16 +116,15 @@ function pickcolor(party) {
 
     if (party === null || party === undefined) {
         return 'black';
-    } else {
+    }
 
-        if (party.toString().toLowerCase() === 'rep') {
-            return 'red';
+    if (party.toString().toLowerCase() === 'rep') {
+        return 'red';
 
-        }
+    }
 
-        if (party.toString().toLowerCase() === 'dem') {
-            return 'blue';
-        }
+    if (party.toString().toLowerCase() === 'dem') {
+        return 'blue';
     }
 }
 
@@ -133,13 +132,13 @@ function makeGraph(a, divi) {
     var graph = document.createElement('canvas');
     var barwidth = 20;
     var space = 25;
-    graph.width = (barwidth * (a.length + 2)) + (space * a.length);
+    graph.width = (barwidth * (a.length + 2)) + (space * (a.length + 2));
     graph.height = 200;
 
 
     var x = 0;
 
-    for (var i = 0; i < a.length - 1; i++) {
+    for (var i = 0; i < a.length; i++) {
         drawBars(graph, a[i].value, x, barwidth, pickcolor(a[i].party), a[i].choice);
         x += space;
 
@@ -153,15 +152,13 @@ function drawBars(canvas, votes, x, width, party, vote) {
 
     context.save();
     context.translate(x, 200);
-
+    context.fillStyle = party;
     context.rect(x, -votes * 2, width, votes * 2);
 
     context.font = "12px Arial";
-    context.fillStyle = party;
 
     context.fillText(vote, x, -votes * 2 - 10);
 
-    context.fillStyle = party;
     context.fill();
     context.restore();
 }
