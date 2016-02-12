@@ -21,13 +21,14 @@ window.pollsterPoll = function (incoming_data) {
     visualize(latest_data);
 
     for (var i = 0; i < 3; i++) {
-        getquestions(latest_data[i]);
+        var adiv = "poll" + i.toString() + "Question";
+        getquestions(adiv, latest_data[i]);
     }
 };
 
-function getquestions(data) {
+function getquestions(adiv, data) {
     for (var i = 0; i < 3; i++) {
-        makeGraph(data.questions[i].subpopulations[0].responses);
+        makeGraph(data.questions[i].subpopulations[0].responses, adiv + i.toString());
     }
 }
 
@@ -37,7 +38,7 @@ function visualize(d) {
 
 function pickcolor(party) {
 
-    if (party === null) {
+    if (party === null || party === undefined) {
         return 'black';
     } else {
 
@@ -52,7 +53,7 @@ function pickcolor(party) {
     }
 }
 
-function makeGraph(a) {
+function makeGraph(a, divi) {
     var graph = document.createElement('canvas');
     var barwidth = 20;
     var space = 25;
@@ -66,7 +67,8 @@ function makeGraph(a) {
         drawBars(graph, a[i].value, x, barwidth, pickcolor(a[i].party), a[i].choice);
         x += space;
 
-        // var appendtome = document.getElementById();
+        var test = document.getElementById(divi);
+        test.appendChild(graph);
     }
 }
 
