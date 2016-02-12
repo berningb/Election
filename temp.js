@@ -65,9 +65,9 @@ function makeGraph(a) {
     for (var i = 0; i < a.length - 1; i++) {
         drawBars(graph, a[i].value, x, barwidth, pickcolor(a[i].party), a[i].choice);
         x += space;
-    }
 
-    document.body.appendChild(graph);
+        // var appendtome = document.getElementById();
+    }
 }
 
 function drawBars(canvas, votes, x, width, party, vote) {
