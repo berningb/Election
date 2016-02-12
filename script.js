@@ -37,6 +37,10 @@ window.pollsterPoll = function (incoming_data) {
     questionName(latest_data, third, third, 'poll3Question3');
     info(latest_data, third, 'specs3');
 
+    for (var i = 0; i < 3; i++) {
+        var adiv = "poll" + i.toString() + "Question";
+        getquestions(adiv, latest_data[i]);
+    }
 
 };
 
@@ -95,20 +99,69 @@ function info(data, start, id) {
 
 }
 
-//function check(sentence, id) {
-//    var rep = 'Republican';
-//    var demo = 'Democrat';
-//
-//    if (sentence.indexOf(rep) > -1) {
-//        document.getElementById(id).style.color = "red"
-//
-//    }
-//    if (sentence.indexOf(demo) > -1) {
-//        document.getElementById(id).style.color = "blue"
-//    }
-//}
-
 function pollName(id, name) {
     $('#' + id).append(name);
 
+}
+
+// flksjflkjdsfkfdsjdsjflkdsjfldsjfldsjfkdslkf
+
+function getquestions(adiv, data) {
+    for (var i = 0; i < 3; i++) {
+        makeGraph(data.questions[i].subpopulations[0].responses, adiv + i.toString());
+    }
+}
+
+function pickcolor(party) {
+
+    if (party === null || party === undefined) {
+        return 'black';
+    } else {
+
+        if (party.toString().toLowerCase() === 'rep') {
+            return 'red';
+
+        }
+
+        if (party.toString().toLowerCase() === 'dem') {
+            return 'blue';
+        }
+    }
+}
+
+function makeGraph(a, divi) {
+    var graph = document.createElement('canvas');
+    var barwidth = 20;
+    var space = 25;
+    graph.width = (barwidth * (a.length + 2)) + (space * a.length);
+    graph.height = 200;
+
+
+    var x = 0;
+
+    for (var i = 0; i < a.length - 1; i++) {
+        drawBars(graph, a[i].value, x, barwidth, pickcolor(a[i].party), a[i].choice);
+        x += space;
+
+        var test = document.getElementById(divi);
+        test.appendChild(graph);
+    }
+}
+
+function drawBars(canvas, votes, x, width, party, vote) {
+    var context = canvas.getContext('2d');
+
+    context.save();
+    context.translate(x, 200);
+
+    context.rect(x, -votes * 2, width, votes * 2);
+
+    context.font = "12px Arial";
+    context.fillStyle = party;
+
+    context.fillText(vote, x, -votes * 2 - 10);
+
+    context.fillStyle = party;
+    context.fill();
+    context.restore();
 }
