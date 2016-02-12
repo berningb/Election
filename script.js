@@ -66,10 +66,6 @@ function questionName(data, start, num, id) {
     var t = document.createTextNode(string);
     h3.appendChild(t);
     document.getElementById(id).appendChild(h3);
-
-
-    //    check(string, id);
-
 }
 
 function info(data, start, id) {
@@ -101,12 +97,10 @@ function info(data, start, id) {
 //
 //    if (sentence.indexOf(rep) > -1) {
 //        document.getElementById(id).style.color = "red"
-////        document.getElementById(id).style.backgroundImage = "url(images/download.jpg)"
 //
 //    }
 //    if (sentence.indexOf(demo) > -1) {
 //        document.getElementById(id).style.color = "blue"
-////        document.getElementById(id).style.backgroundImage = "url(images/download.png)"
 //    }
 //}
 
