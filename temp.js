@@ -5,11 +5,6 @@ var API_SERVER = 'http://elections.huffingtonpost.com',
     params = '&state=US&topic=2016-president',
     latest_data;
 
-window.pollsterPoll = function (incoming_data) {
-    latest_data = incoming_data;
-    visualize(latest_data);
-    makeGraph(latest_data[0].questions[0].subpopulations[0].responses);
-};
 
 $(document).ready(function () {
     $.ajax({
@@ -20,22 +15,40 @@ $(document).ready(function () {
     });
 });
 
+
+window.pollsterPoll = function (incoming_data) {
+    latest_data = incoming_data;
+    visualize(latest_data);
+
+    for (var i = 0; i < 3; i++) {
+        getquestions(latest_data[i]);
+    }
+};
+
+function getquestions(data) {
+    for (var i = 0; i < 3; i++) {
+        makeGraph(data.questions[i].subpopulations[0].responses);
+    }
+}
+
 function visualize(d) {
     console.log(d);
 }
 
-function check(sentence, id) {
-    var rep = 'Republican';
-    var demo = 'Democrat';
+function pickcolor(party) {
 
-    if (sentence.indexOf(rep) > -1) {
-        document.getElementById(id).style.color = "red"
-            //        document.getElementById(id).style.backgroundImage = "url(images/download.jpg)"
+    if (party === null) {
+        return 'black';
+    } else {
 
-    }
-    if (sentence.indexOf(demo) > -1) {
-        document.getElementById(id).style.color = "blue"
-            //        document.getElementById(id).style.backgroundImage = "url(images/download.png)"
+        if (party.toString().toLowerCase() === 'rep') {
+            return 'red';
+
+        }
+
+        if (party.toString().toLowerCase() === 'dem') {
+            return 'blue';
+        }
     }
 }
 
@@ -44,29 +57,33 @@ function makeGraph(a) {
     var barwidth = 20;
     var space = 25;
     graph.width = (barwidth * (a.length + 2)) + (space * a.length);
-    graph.height = 500;
+    graph.height = 200;
 
 
     var x = 0;
 
-    for (var i = 0; i < a.length; i++) {
-        drawBars(graph, a[i].value, x, barwidth);
-        console.log(a[i].value);
+    for (var i = 0; i < a.length - 1; i++) {
+        drawBars(graph, a[i].value, x, barwidth, pickcolor(a[i].party), a[i].choice);
         x += space;
     }
 
-    $('body').append(graph);
+    document.body.appendChild(graph);
 }
 
-function drawBars(canvas, votes, x, width) {
+function drawBars(canvas, votes, x, width, party, vote) {
     var context = canvas.getContext('2d');
 
     context.save();
-    context.translate(x, 500);
+    context.translate(x, 200);
 
     context.rect(x, -votes * 2, width, votes * 2);
-    context.fillStyle = 'green';
 
+    context.font = "12px Arial";
+    context.fillStyle = party;
+
+    context.fillText(vote, x, -votes * 2 - 10);
+
+    context.fillStyle = party;
     context.fill();
     context.restore();
 }
