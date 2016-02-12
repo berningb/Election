@@ -67,6 +67,9 @@ function questionName(data, start, num, id) {
     h3.appendChild(t);
     document.getElementById(id).appendChild(h3);
 
+    var h4 = document.createElement("h4");
+    var t = document.createTextNode(string);
+
 
     //    check(string, id);
 
