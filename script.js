@@ -108,6 +108,13 @@ function pollName(id, name) {
 
 function getquestions(adiv, data) {
     for (var i = 0; i < 3; i++) {
+        var pic = getpictures(data.questions[i].name);
+
+        if (pic !== undefined) {
+            var mydiv = document.getElementById(adiv + i.toString());
+            mydiv.appendChild(pic);
+        }
+
         makeGraph(data.questions[i].subpopulations[0].responses, adiv + i.toString());
     }
 }
@@ -128,13 +135,51 @@ function pickcolor(party) {
     }
 }
 
+function getpictures(person) {
+
+    console.log(person);
+    var picture = document.createElement('img');
+
+    switch (person) {
+    case person.includes('Bush'):
+        picture.setAttribute('src', 'images/bush.jpg');
+        break;
+
+    case person.includes('Clinton'):
+        picture.setAttribute('src', 'images/clinton.jpg');
+        break;
+    case person.includes('Cruz'):
+        picture.setAttribute('src', 'images/cruz.jpg')
+        break;
+    case person.includes('Sanders'):
+        picture.setAttribute('src', 'images/sanders.jpg')
+        break;
+    case person.includes('Trump'):
+        picture.setAttribute('src', 'images/trump.jpg');
+        break;
+
+    case person.includes('Republican'):
+        picture.setAttribute('src', 'images/rep.png');
+        break;
+
+    case person.includes('Democratic'):
+        picture.setAttribute('src', 'images/dem.jpg');
+        break;
+
+    default:
+        picture.setAttribute('src', 'images/none.svg');
+        break;
+    }
+
+    return picture;
+}
+
 function makeGraph(a, divi) {
     var graph = document.createElement('canvas');
     var barwidth = 20;
     var space = 25;
     graph.width = (barwidth * (a.length + 2)) + (space * (a.length + 2));
     graph.height = 200;
-
 
     var x = 0;
 
