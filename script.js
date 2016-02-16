@@ -108,13 +108,6 @@ function pollName(id, name) {
 
 function getquestions(adiv, data) {
     for (var i = 0; i < 3; i++) {
-        var pic = getpictures(data.questions[i].name);
-
-        if (pic !== undefined) {
-            var mydiv = document.getElementById(adiv + i.toString());
-            mydiv.appendChild(pic);
-        }
-
         makeGraph(data.questions[i].subpopulations[0].responses, adiv + i.toString());
     }
 }
@@ -136,33 +129,32 @@ function pickcolor(party) {
 }
 
 function getpictures(person) {
-
-    console.log(person);
     var picture = document.createElement('img');
 
     switch (person) {
-    case person.includes('Bush'):
+    case 'Bush':
         picture.setAttribute('src', 'images/bush.jpg');
         break;
-
-    case person.includes('Clinton'):
+    case 'Obama':
+        picture.setAttribute('src', 'images/obama.jpg');
+        break;
+    case 'Clinton':
         picture.setAttribute('src', 'images/clinton.jpg');
         break;
-    case person.includes('Cruz'):
+    case 'Cruz':
         picture.setAttribute('src', 'images/cruz.jpg')
         break;
-    case person.includes('Sanders'):
+    case 'Sanders':
         picture.setAttribute('src', 'images/sanders.jpg')
         break;
-    case person.includes('Trump'):
+    case 'Trump':
         picture.setAttribute('src', 'images/trump.jpg');
         break;
-
-    case person.includes('Republican'):
+    case 'Republican':
         picture.setAttribute('src', 'images/rep.png');
         break;
 
-    case person.includes('Democratic'):
+    case 'Democratic':
         picture.setAttribute('src', 'images/dem.jpg');
         break;
 
@@ -180,6 +172,9 @@ function makeGraph(a, divi) {
     var space = 25;
     graph.width = (barwidth * (a.length + 2)) + (space * (a.length + 2));
     graph.height = 200;
+    var highest = 0;
+    var index = 0;
+    var test = document.getElementById(divi);
 
     var x = 0;
 
@@ -187,8 +182,18 @@ function makeGraph(a, divi) {
         drawBars(graph, a[i].value, x, barwidth, pickcolor(a[i].party), a[i].choice);
         x += space;
 
-        var test = document.getElementById(divi);
+        if (a[i].value > highest) {
+            highest = a[i].value;
+            index = i;
+        }
+
         test.appendChild(graph);
+    }
+
+
+    var pic = getpictures(a[index].choice);
+    if (pic !== undefined && pic !== null) {
+        test.appendChild(pic);
     }
 }
 
