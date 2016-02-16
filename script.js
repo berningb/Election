@@ -203,12 +203,12 @@ function drawBars(canvas, votes, x, width, party, vote) {
     context.save();
     context.translate(x, 200);
     context.fillStyle = party;
+    context.beginPath();
     context.rect(x, -votes * 2, width, votes * 2);
+    context.closePath();
 
     context.font = "12px Arial";
-
-    context.fillText(vote, x, -votes * 2 - 10);
-
     context.fill();
+    context.fillText(vote, x, -votes * 2 - 10);
     context.restore();
 }
